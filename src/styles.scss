@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+  --terracotta: #FFEB98;      
+  --terracotta-light: #f8e7a4; 
+  --gray: #6b7280;
+  --border: #e5e7eb;
+}

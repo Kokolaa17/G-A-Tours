@@ -1,0 +1,42 @@
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header">
+    <div style="text-align: center;">
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-desc">From Our Memorable Moments</p>
+    </div>
+  </div>
+
+  <div class="gallery-grid">
+    @for (item of galleryItems; track item.src) {
+      <div class="gallery-card" (click)="openLightbox(item.src, item.location, item.name)">
+        <div class="gallery-img">
+          <img [src]="item.src" [alt]="item.location">
+          <span class="gallery-badge">{{ item.location }}</span>
+        </div>
+        <div class="gallery-body">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.location }}</p>
+          <div class="gallery-footer">
+            <button class="btn-sm" (click)="openLightbox(item.src, item.location, item.name); $event.stopPropagation()">
+              View Photo
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (selectedImage) {
+    <div class="lightbox" (click)="closeLightbox()">
+      <button class="lightbox-close" (click)="closeLightbox()">✕</button>
+      <div class="lightbox-content" (click)="$event.stopPropagation()">
+        <img [src]="selectedImage.src" [alt]="selectedImage.title">
+        <div class="lightbox-caption">
+          <h3>{{ selectedImage.title }}</h3>
+          <span>{{ selectedImage.subtitle }}</span>
+        </div>
+      </div>
+    </div>
+  }
+</section>

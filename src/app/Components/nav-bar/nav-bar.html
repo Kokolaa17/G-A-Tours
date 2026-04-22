@@ -1,0 +1,34 @@
+<nav>
+  <div class="nav-lang">
+    <div class="nav-lang-content">
+      <a href="#" class="active" (click)="switchLanguage('en', $event)">
+        <img src="/svgs/flag-for-flag-united-kingdom-svgrepo-com.svg"> EN
+      </a>
+
+      <a href="#" (click)="switchLanguage('ka', $event)">
+        <img src="/svgs/flag-for-flag-georgia-svgrepo-com.svg"> KA
+      </a>
+
+    </div>
+  </div>
+
+  <div class="nav-content">
+    <a href="#" class="logo">
+      <div class="logo-icon">
+        <img src="/logo/398759390_122147276564007629_6939718363985325810_n.jpg">
+      </div>
+      <div class="logo-text">
+        <strong>G&A Tours</strong>
+        <span>{{ 'nav.TourismAgency' | translate }}</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li routerLink="/" class="active">{{ 'nav.home' | translate }}</li>
+      <li routerLink="finished-tours">{{ 'nav.tours' | translate }}</li>
+      <li routerLink="gallery">{{ 'nav.gallery' | translate }}</li>
+      <li>{{ 'nav.about' | translate }}</li>
+      <li>{{ 'nav.contact' | translate }}</li>
+    </ul>
+  </div>
+</nav>

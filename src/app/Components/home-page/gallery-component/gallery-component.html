@@ -1,0 +1,68 @@
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header">
+    <div>
+      <span class="section-tag">{{ 'gallery.title' | translate }}</span>
+      <h2 class="section-title">{{ 'gallery.description' | translate }}</h2>
+    </div>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-card" (click)="openLightbox(
+      'https://scontent.ftbs5-2.fna.fbcdn.net/v/t39.30808-6/673532450_122322119588007629_7741975623928203564_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_ohc=NDEjYQxmC9EQ7kNvwG8U2jC&_nc_oc=Adq0OjNJdVDzDgIf2_jlKzE8Ew1ALePO8mFEkgpDwPveFzqn1oq_aQnDKJCM5Iqhud8&_nc_zt=23&se=-1&_nc_ht=scontent.ftbs5-2.fna&_nc_gid=WLseHFVBHZ6rXcPUza3xPQ&_nc_ss=7a3a8&oh=00_Af3vl10991P-kL_Wfk_4BBrc_rM1GFrInzVFuHLOBCNfWA&oe=69EE9A96',
+      'Garni, Armenia',
+      'Temple of Garni'
+    )">
+      <img src="https://scontent.ftbs5-2.fna.fbcdn.net/v/t39.30808-6/673532450_122322119588007629_7741975623928203564_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_ohc=NDEjYQxmC9EQ7kNvwG8U2jC&_nc_oc=Adq0OjNJdVDzDgIf2_jlKzE8Ew1ALePO8mFEkgpDwPveFzqn1oq_aQnDKJCM5Iqhud8&_nc_zt=23&se=-1&_nc_ht=scontent.ftbs5-2.fna&_nc_gid=WLseHFVBHZ6rXcPUza3xPQ&_nc_ss=7a3a8&oh=00_Af3vl10991P-kL_Wfk_4BBrc_rM1GFrInzVFuHLOBCNfWA&oe=69EE9A96" alt="Tbilisi">
+      <div class="gallery-overlay">
+        <h3>Garni, Armenia</h3>
+        <span>Temple of Garni</span>
+      </div>
+    </div>
+    <div class="gallery-card" (click)="openLightbox(
+      'https://scontent.ftbs5-3.fna.fbcdn.net/v/t39.30808-6/667382595_122319989954007629_7663545516457305122_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_ohc=3OpQPrTs3JIQ7kNvwFn7E7G&_nc_oc=AdoCYmDzJAJBwc1kXLxOaE-GRcuG3yO7ZlNugQKH_Cr5fl6iYqUAoo11CRcFIJOeAtg&_nc_zt=23&se=-1&_nc_ht=scontent.ftbs5-3.fna&_nc_gid=AFIxjwMlUmxt2tU2Swx2-A&_nc_ss=7a3a8&oh=00_Af0NxEnFFTz2Dpk66hytEGcVOYff6An21dr6-FygGp6Osw&oe=69EEC270',
+      'Trabzon, Turkey',
+      'Trabzon Akvaryum'
+    )">
+      <img src="https://scontent.ftbs5-3.fna.fbcdn.net/v/t39.30808-6/667382595_122319989954007629_7663545516457305122_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_ohc=3OpQPrTs3JIQ7kNvwFn7E7G&_nc_oc=AdoCYmDzJAJBwc1kXLxOaE-GRcuG3yO7ZlNugQKH_Cr5fl6iYqUAoo11CRcFIJOeAtg&_nc_zt=23&se=-1&_nc_ht=scontent.ftbs5-3.fna&_nc_gid=AFIxjwMlUmxt2tU2Swx2-A&_nc_ss=7a3a8&oh=00_Af0NxEnFFTz2Dpk66hytEGcVOYff6An21dr6-FygGp6Osw&oe=69EEC270" alt="Yerevan">
+      <div class="gallery-overlay">
+        <h3>Trabzon, Turkey</h3>
+        <span>Trabzon Akvaryum</span>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1567696153798-9111f9cd3d0d?w=600&q=80" alt="Kakheti">
+      <div class="gallery-overlay">
+        <h3>Kakheti Wine Country</h3>
+        <span>8,000 years of winemaking</span>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <img src="https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&q=80" alt="Kazbegi">
+      <div class="gallery-overlay">
+        <h3>Kazbegi Mountains</h3>
+        <span>The roof of the Caucasus</span>
+      </div>
+    </div>
+    <div class="gallery-card" (click)="openLightbox(
+      'https://scontent.ftbs5-2.fna.fbcdn.net/v/t39.30808-6/662239251_122319989726007629_273497873583964575_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_ohc=-Bgxu4DYK44Q7kNvwHmXOjX&_nc_oc=AdoCIsWZbXaCz9kQqf21oUnrHsPq4cvWNJDwwKR4YE3wrVdTd6d_xWWWzMSdMlTEGkg&_nc_zt=23&_nc_ht=scontent.ftbs5-2.fna&_nc_gid=qT4f7737lzmJZZoxUhmAcA&_nc_ss=7a3a8&oh=00_Af390LJpOh41MwD877tiUhxCF73SuvX_0oZXGme7uvFiVg&oe=69EE9C81',
+      'Uzungöl, Turkey',
+      'Uzungöl lake'
+    )">
+      <img src="https://scontent.ftbs5-2.fna.fbcdn.net/v/t39.30808-6/662239251_122319989726007629_273497873583964575_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_ohc=-Bgxu4DYK44Q7kNvwHmXOjX&_nc_oc=AdoCIsWZbXaCz9kQqf21oUnrHsPq4cvWNJDwwKR4YE3wrVdTd6d_xWWWzMSdMlTEGkg&_nc_zt=23&_nc_ht=scontent.ftbs5-2.fna&_nc_gid=qT4f7737lzmJZZoxUhmAcA&_nc_ss=7a3a8&oh=00_Af390LJpOh41MwD877tiUhxCF73SuvX_0oZXGme7uvFiVg&oe=69EE9C81" alt="Lake Sevan">
+      <div class="gallery-overlay">
+        <h3>Uzungöl, Turkey</h3>
+        <span>Uzungöl lake</span>
+      </div>
+    </div>
+  </div> @if (selectedImage) { <div class="lightbox" (click)="closeLightbox()">
+    <button class="lightbox-close" (click)="closeLightbox()">✕</button>
+    <div class="lightbox-content" (click)="$event.stopPropagation()">
+      <img [src]="selectedImage.src" [alt]="selectedImage.title">
+      <div class="lightbox-caption">
+        <h3>{{ selectedImage.title }}</h3>
+        <span>{{ selectedImage.subtitle }}</span>
+      </div>
+    </div>
+  </div> }
+  <button (click)="goToAllImages()">View All</button>
+</section>

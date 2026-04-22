@@ -1,0 +1,143 @@
+<!-- FEATURED TOURS -->
+<section id="tours">
+  <div class="section-header">
+    <div>
+      <h2 class="section-title">{{ 'ourTours.finishedTours' | translate }}</h2>
+      <p class="section-desc">{{ 'ourTours.toursCommerical' | translate }}</p>
+    </div>
+  </div>
+  <div class="finished-tours">
+    <swiper-container slides-per-view="1" speed="500" space-between="40" autoplay="true" autoplay-pause-on-mouse-enter="true" breakpoints='{
+            "778": {
+            "slidesPerView": 2
+            },
+            "1235": {
+            "slidesPerView": 3
+            },
+            "1385": {
+            "slidesPerView": 4
+            }
+        }'>
+      <swiper-slide>
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://images.unsplash.com/photo-1567696153798-9111f9cd3d0d?w=600&q=80" alt="Kakheti Wine Regions">
+            <span class="tour-badge">Finished</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-meta">
+              <span>📅 Full Day</span>
+              <span>✅ Easy</span>
+            </div>
+            <h3>Kakheti Wine Regions</h3>
+            <p>Explore Georgia's legendary wine country. Visit ancient wineries, taste Rkatsiteli and Saperavi wines, and discover the Alazani Valley's breathtaking scenery.</p>
+            <div class="tour-footer">
+              <div class="tour-price">
+                <span>Price from</span>
+                <strong>$59</strong>
+              </div>
+              <a href="#contact" class="btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- Tour 2 -->
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://images.unsplash.com/photo-1622015663319-e97e697503ee?w=600&q=80" alt="Yerevan City Highlights">
+            <span class="tour-badge">Finished</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-meta">
+              <span>📅 Full Day</span>
+              <span>✅ Easy</span>
+            </div>
+            <h3>Yerevan City Highlights</h3>
+            <p>Discover the "Pink City" — Republic Square, the Cascade Complex, Matenadaran manuscripts museum, and Mount Ararat views that take your breath away.</p>
+            <div class="tour-footer">
+              <div class="tour-price">
+                <span>Price from</span>
+                <strong>$19</strong>
+              </div>
+              <a href="#contact" class="btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- Tour 3 -->
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://images.unsplash.com/photo-1565008576549-57569a49371d?w=600&q=80" alt="Mtskheta Religious Tour">
+            <span class="tour-badge">Finished</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-meta">
+              <span>📅 Half Day</span>
+              <span>✅ Easy</span>
+            </div>
+            <h3>Mtskheta Religious Tour</h3>
+            <p>Visit Georgia's ancient capital with its UNESCO-listed Svetitskhoveli Cathedral, Jvari Monastery perched over the confluence of two great rivers.</p>
+            <div class="tour-footer">
+              <div class="tour-price">
+                <span>Price from</span>
+                <strong>$29</strong>
+              </div>
+              <a href="#contact" class="btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- Tour 4 -->
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://images.unsplash.com/photo-1610641818989-c2051b5e2cfd?w=600&q=80" alt="Yerevan City Regions">
+            <span class="tour-badge">Finished</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-meta">
+              <span>📅 Full Day</span>
+              <span>✅ Easy</span>
+            </div>
+            <h3>Kazbegi Mountain Adventure</h3>
+            <p>Drive the legendary Georgian Military Road to Kazbegi, hike to the iconic Gergeti Trinity Church at 2,170m with views of Mount Kazbek.</p>
+            <div class="tour-footer">
+              <div class="tour-price">
+                <span>Price from</span>
+                <strong>$25</strong>
+              </div>
+              <a href="#contact" class="btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+      <swiper-slide>
+        <!-- Tour 2 -->
+        <div class="tour-card">
+          <div class="tour-img">
+            <img src="https://images.unsplash.com/photo-1622015663319-e97e697503ee?w=600&q=80" alt="Yerevan City Highlights">
+            <span class="tour-badge">Finished</span>
+          </div>
+          <div class="tour-body">
+            <div class="tour-meta">
+              <span>📅 Full Day</span>
+              <span>✅ Easy</span>
+            </div>
+            <h3>Yerevan City Highlights</h3>
+            <p>Discover the "Pink City" — Republic Square, the Cascade Complex, Matenadaran manuscripts museum, and Mount Ararat views that take your breath away.</p>
+            <div class="tour-footer">
+              <div class="tour-price">
+                <span>Price from</span>
+                <strong>$19</strong>
+              </div>
+              <a href="#contact" class="btn-sm">View Details</a>
+            </div>
+          </div>
+        </div>
+      </swiper-slide>
+    </swiper-container>
+    <button (click)="goToAllTours()">View All</button>
+  </div>
+</section>

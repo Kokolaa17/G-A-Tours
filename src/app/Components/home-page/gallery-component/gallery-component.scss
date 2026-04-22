@@ -1,0 +1,223 @@
+/* SECTION COMMON */
+section {
+  padding: 30px;
+  margin-top: 60px;
+  max-width: 1440px;
+  margin: 0 auto;
+
+  .section-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: #006139;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(26px, 3vw, 40px);
+    color: var(--dark);
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}
+
+/* GALLERY */
+#gallery {
+  background-color: #e8e8e8;
+  border-radius: 12px;
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 240px 240px;
+    gap: 16px;
+    background-color: #e8e8e8;
+
+    &.reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.7s ease;
+
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .gallery-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      cursor: pointer;
+
+      &:first-child {
+        grid-row: span 2;
+      }
+
+      &:hover img {
+        transform: scale(1.08);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s;
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(20, 30, 20, 0.75) 0%,
+          transparent 60%
+        );
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+
+        h3 {
+          font-family: "Playfair Display", serif;
+          color: white;
+          font-size: 20px;
+          margin-bottom: 4px;
+        }
+
+        span {
+          color: rgba(255, 255, 255, 0.75);
+          font-size: 12px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(3, 200px);
+
+      .gallery-card:first-child {
+        grid-column: span 2;
+        grid-row: span 1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(5, 200px);
+
+      .gallery-card:first-child {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+    }
+  }
+
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 28px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+
+      img {
+        max-width: 90vw;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 6px;
+        display: block;
+      }
+
+      .lightbox-caption {
+        padding: 14px 4px 0;
+
+        h3 {
+          font-family: "Playfair Display", serif;
+          color: white;
+          font-size: 18px;
+          margin-bottom: 4px;
+        }
+
+        span {
+          color: rgba(255, 255, 255, 0.6);
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  button {
+    display: block;
+    margin: 28px auto 0;
+    background: transparent;
+    color: #006139;
+    border: 2px solid #006139;
+    padding: 11px 36px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    animation: fadeIn 0.7s ease;
+    &:hover {
+      background: #006139;
+      color: #fff;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

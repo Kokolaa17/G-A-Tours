@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "Home",
+    "tours": "Tours",
+    "gallery": "Gallery",
+    "about": "About Us",
+    "contact": "Contact",
+    "TourismAgency": "Tourism Agency"
+  },
+  "hero": {
+    "georgianAdventures": "Georgian Adventures",
+    "title": "Discover the World with Us - Unforgettable Tours",
+    "description": "Experience unforgettable adventures with our tours",
+    "exploreTours": "Upcoming Tour Details",
+    "UpcomingTour": "Upcoming Tour",
+    "Available" : "Available",
+    "ViewDetails" : "View Details",
+    "HappyTravelers": "Happy Travelers",
+    "TourRoutes": "Tour Routes",
+    "CountriesVisited": "Countries Visited",
+    "RatedExperiences": "Rated Experience"
+  },
+  "about": {
+    "title": "Why Choose G&A Tours",
+    "description": "Your Journey, Our Passion",
+    "reason": "We combine deep local knowledge with genuine hospitality to craft journeys that go beyond sightseeing — into the true soul of the world.",
+    "reason1": "Certified Local Guide",
+    "reason1desc" : "Our certified local guides are passionate about sharing their knowledge and love for the region, ensuring you experience the authentic culture, history, and hidden gems that make each destination unique.",
+    "reason2": "Tailor-Made Itineraries",
+    "reason2desc": "Every journey is crafted to your interests, pace, and budget. We design custom routes for solo travelers, couples, families, and groups.",
+    "reason3": "All-Inclusive Experience",
+    "reason3desc": "From accommodation and transfers to meals and guided tours — everything is organized so you can focus on experiencing the magic.",
+    "reason4": "Authentic Cultural Immersion",
+    "reason4desc": "Share a meal with local families, learn to make wine in a Kakhetian cellar, and experience traditions passed down for millennia."
+  },
+  "ourTours": {
+    "finishedTours": "Finished Tours",
+    "toursCommerical" : "Carefully crafted journeys through the most stunning landscapes"
+  },
+  "getInTouch": {
+    "title": "Get in Touch",
+    "description": "Plan Your Dream Journey.",
+    "message": "Ready to discover the world? Reach out to our team and we'll contact you with a suitable tour suggestion just for you — typically within 24 hours.",
+    "contact1": "Adress",
+    "Contact1Value" : "Tbilisi, Georgia",
+    "contact2": "Phone",
+    "Contact2Value" : "+995 591 22 89 42",
+    "contact3": "Email",
+    "Contact3Value" : "geoadvanture21@gmail.com",
+    "contact4": "Working Hours",
+    "Contact4Value" : "Mon-Fri: 9am - 6pm"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "description": "From Our Memorable Moments"
+  }
+}
