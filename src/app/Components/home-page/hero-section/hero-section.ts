@@ -8,5 +8,9 @@ import { TranslateModule } from '@ngx-translate/core';
   styleUrl: './hero-section.scss',
 })
 export class HeroSection {
-
+  stats = [
+    { label: 'heroSection.tours', value: 120 },
+    { label: 'heroSection.countries', value: 15 },
+    { label: 'heroSection.customers', value: 5000 },
+  ];
 }

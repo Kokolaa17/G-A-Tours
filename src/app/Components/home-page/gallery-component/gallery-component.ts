@@ -25,6 +25,7 @@ export class GalleryComponent {
 
     goToAllImages() {
     this.router.navigate(['/gallery']);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   
 }

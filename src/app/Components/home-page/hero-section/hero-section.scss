@@ -16,54 +16,62 @@ $icon-color: #888888;
 $radius-card: 10px;
 $radius-btn: 6px;
 
+$bp-md: 768px;
+$bp-sm: 480px;
+
 /* HERO */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/*Featured Tours Section*/
 @keyframes fromRight {
-  from {
-    opacity: 0;
-    transform: translateX(500px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(500px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-/* HERO STATS BAR */
 .hero {
-  margin-top: 130px;
+  margin-top: 120px;
   height: 80vh;
+  min-height: 500px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   border-right: 1px solid var(--border);
+
+  @media (max-width: $bp-md) {
+    margin-top: 100px;
+    height: auto;
+    min-height: unset;
+    padding-bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: none;
+  }
+
   h1 {
     font-family: $font-family_1;
-    font-size: clamp(32px, 4.5vw, 56px);
+    font-size: clamp(28px, 4.5vw, 56px);
     color: $color_1;
     line-height: 1.18;
     margin-bottom: 18px;
     font-weight: 700;
   }
+
   p {
     color: $color_2;
     font-size: 17px;
     line-height: 1.6;
     margin-bottom: 36px;
     font-weight: 300;
+
+    @media (max-width: $bp-sm) {
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
   }
+
   .featured-tours {
     position: absolute;
     right: 0;
@@ -74,18 +82,39 @@ $radius-btn: 6px;
     border-top-left-radius: 12px;
     padding: 15px;
     animation: fromRight 1s;
+
     h2 {
       font-family: Roboto Flex, sans-serif;
       font-weight: 700;
       margin-bottom: 20px;
     }
+     @media (max-width: 1150px) {
+        width: 310px !important;
+        height: 310px !important; 
+    }
+
+    @media (max-width: $bp-md) {
+      position: relative;
+      right: unset;
+      bottom: unset;
+      width: 100% !important;
+      height: auto !important;
+      border-top-left-radius: 0;
+      border-radius: 0;
+      animation: none;
+      padding: 20px;
+      box-shadow: none;
+      border-top: 1px solid $border;
+    }
   }
 }
+
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   background: url("/wallpapers/herobg.png") center/cover no-repeat;
+
   &::after {
     content: "";
     position: absolute;
@@ -97,14 +126,36 @@ $radius-btn: 6px;
       transparent 100%
     );
   }
+
+  @media (max-width: $bp-md) {
+    height: 420px;
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+  }
 }
+
 .hero-content {
   position: relative;
   z-index: 1;
   max-width: 680px;
   padding: 0 5%;
   animation: fadeUp 1s ease both;
+
+  @media (max-width: $bp-md) {
+    position: absolute;
+    top: 20%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  @media (max-width: $bp-sm) {
+    top: 45%;
+  }
 }
+
 .hero-label {
   display: inline-block;
   background: #006139;
@@ -116,6 +167,7 @@ $radius-btn: 6px;
   border-radius: 2px;
   margin-bottom: 20px;
 }
+
 .btn-primary {
   cursor: pointer;
   display: inline-block;
@@ -130,18 +182,24 @@ $radius-btn: 6px;
   text-transform: uppercase;
   transition: all 0.25s;
   border: 2px solid var(--terracotta);
+
   &:hover {
     background: var(--terracotta-light);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px var(--terracotta-light);
   }
+
+  @media (max-width: $bp-sm) {
+    padding: 11px 24px;
+    font-size: 13px;
+  }
 }
 
-
-// ─── Section wrapper ─────────────────────────────────────────────────────────
+// ─── Featured tours card ──────────────────────────────────────────────────────
 .featured-tours-section {
   background: $section-bg;
   padding: 32px 20px 40px;
+
   h2 {
     font-size: 20px;
     font-weight: 700;
@@ -150,7 +208,6 @@ $radius-btn: 6px;
   }
 }
 
-// ─── Card ─────────────────────────────────────────────────────────────────────
 .featured-tour-card {
   background: $card-bg;
   border-radius: $radius-card;
@@ -175,9 +232,8 @@ $radius-btn: 6px;
     justify-content: center;
     top: 0;
     border-bottom-right-radius: 12px;
-    p {
-      margin: 0;
-    }
+
+    p { margin: 0; }
   }
 
   &:hover {
@@ -185,7 +241,6 @@ $radius-btn: 6px;
     transform: translateY(-3px);
   }
 
-  // ── Thumbnail ──────────────────────────────────────────────────────────────
   img {
     width: 100%;
     height: 140px;
@@ -194,7 +249,6 @@ $radius-btn: 6px;
     border-radius: $radius-card $radius-card 0 0;
   }
 
-  // ── Info body ──────────────────────────────────────────────────────────────
   .tour-info {
     padding: 12px 14px 16px;
     display: flex;
@@ -202,7 +256,6 @@ $radius-btn: 6px;
     gap: 6px;
     flex: 1;
 
-    // Tour name
     h3 {
       font-size: 14px;
       font-weight: 700;
@@ -211,7 +264,6 @@ $radius-btn: 6px;
       margin: 0;
     }
 
-    // Meta row  (duration + difficulty – icons + text)
     .tour-meta {
       display: flex;
       flex-direction: column;
@@ -226,8 +278,7 @@ $radius-btn: 6px;
         color: $text-light;
         line-height: 1;
 
-        svg,
-        i {
+        svg, i {
           width: 13px;
           height: 13px;
           color: $icon-color;
@@ -236,7 +287,6 @@ $radius-btn: 6px;
       }
     }
 
-    // ── CTA button ────────────────────────────────────────────────────────────
     button,
     .btn-details {
       margin-top: 10px;
@@ -252,17 +302,13 @@ $radius-btn: 6px;
       letter-spacing: 0.02em;
       transition: background 0.2s ease;
 
-      &:hover {
-        background: #007444;
-      }
-
-      &:active {
-        transform: scale(0.98);
-      }
+      &:hover { background: #007444; }
+      &:active { transform: scale(0.98); }
     }
   }
 }
 
+// ─── Stats bar ────────────────────────────────────────────────────────────────
 .hero-stats {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(8px);
@@ -272,21 +318,50 @@ $radius-btn: 6px;
   margin-top: 1px;
   border: 1px solid var(--border);
   border-top: none;
+
+  @media (max-width: $bp-md) {
+    flex-wrap: wrap;
+    border-top: 1px solid var(--border);
+  }
 }
+
 .stat-item {
   padding: 22px 48px;
   text-align: center;
   border-right: 1px solid var(--border);
   flex: 1;
+
+  &:last-child { border-right: none; }
+
+  @media (max-width: $bp-md) {
+    padding: 18px 20px;
+    flex: 1 1 50%;
+    border-right: 1px solid var(--border);
+
+    &:nth-child(2) { border-right: none; }
+    &:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+    &:nth-child(4) { border-right: none; border-top: 1px solid var(--border); }
+  }
+
+  @media (max-width: $bp-sm) {
+    flex: 1 1 100%;
+    border-right: none !important;
+    border-top: 1px solid var(--border);
+
+    &:first-child { border-top: none; }
+  }
 }
-.stat-item:last-child {
-  border-right: none;
-}
+
 .stat-num {
   font-family: "Playfair Display", serif;
   font-size: 32px;
   font-weight: 700;
+
+  @media (max-width: $bp-sm) {
+    font-size: 26px;
+  }
 }
+
 .stat-label {
   font-size: 12px;
   color: var(--gray);
@@ -298,7 +373,16 @@ $radius-btn: 6px;
 /* SECTION COMMON */
 section {
   padding: 90px 5%;
+
+  @media (max-width: $bp-md) {
+    padding: 60px 5%;
+  }
+
+  @media (max-width: $bp-sm) {
+    padding: 40px 20px;
+  }
 }
+
 .section-tag {
   display: inline-block;
   font-size: 11px;
@@ -308,18 +392,21 @@ section {
   font-weight: 700;
   margin-bottom: 12px;
 }
+
 .section-title {
   font-family: "Playfair Display", serif;
   font-size: clamp(26px, 3vw, 40px);
   color: var(--dark);
   margin-bottom: 16px;
 }
+
 .section-desc {
   color: var(--gray);
   font-size: 16px;
   line-height: 1.7;
   max-width: 600px;
 }
+
 .section-header {
   display: flex;
   justify-content: space-between;

@@ -16,4 +16,7 @@ export class NavBar {
     this.transelate.use(lang);
     console.log('Language switched to:', lang);
   }
+  menuOpen = false;
+  toggleMenu() { this.menuOpen = !this.menuOpen; }
+  closeMenu() { this.menuOpen = false; }
 }

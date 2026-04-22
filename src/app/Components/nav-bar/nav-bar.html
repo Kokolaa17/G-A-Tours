@@ -1,19 +1,17 @@
-<nav>
+<nav [class.menu-open]="menuOpen">
   <div class="nav-lang">
     <div class="nav-lang-content">
-      <a href="#" class="active" (click)="switchLanguage('en', $event)">
+      <p class="active" (click)="switchLanguage('en', $event)">
         <img src="/svgs/flag-for-flag-united-kingdom-svgrepo-com.svg"> EN
-      </a>
-
-      <a href="#" (click)="switchLanguage('ka', $event)">
+      </p>
+      <p (click)="switchLanguage('ka', $event)">
         <img src="/svgs/flag-for-flag-georgia-svgrepo-com.svg"> KA
-      </a>
-
+      </p>
     </div>
   </div>
 
   <div class="nav-content">
-    <a href="#" class="logo">
+    <div class="logo" routerLink="/">
       <div class="logo-icon">
         <img src="/logo/398759390_122147276564007629_6939718363985325810_n.jpg">
       </div>
@@ -21,14 +19,20 @@
         <strong>G&A Tours</strong>
         <span>{{ 'nav.TourismAgency' | translate }}</span>
       </div>
-    </a>
+    </div>
 
-    <ul class="nav-links">
-      <li routerLink="/" class="active">{{ 'nav.home' | translate }}</li>
-      <li routerLink="finished-tours">{{ 'nav.tours' | translate }}</li>
-      <li routerLink="gallery">{{ 'nav.gallery' | translate }}</li>
-      <li>{{ 'nav.about' | translate }}</li>
-      <li>{{ 'nav.contact' | translate }}</li>
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" [class.open]="menuOpen">
+      <li routerLink="/" class="active" (click)="closeMenu()">{{ 'nav.home' | translate }}</li>
+      <li routerLink="finished-tours" (click)="closeMenu()">{{ 'nav.tours' | translate }}</li>
+      <li routerLink="gallery" (click)="closeMenu()">{{ 'nav.gallery' | translate }}</li>
+      <li (click)="closeMenu()">{{ 'nav.about' | translate }}</li>
+      <li (click)="closeMenu()">{{ 'nav.contact' | translate }}</li>
     </ul>
   </div>
 </nav>
