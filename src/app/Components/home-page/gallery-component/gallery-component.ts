@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-gallery-component',
   imports: [TranslateModule],
   templateUrl: './gallery-component.html',
-  styleUrl: './gallery-component.scss',
+  styleUrls: ['./gallery-component.scss'],
 })
 export class GalleryComponent {
   private readonly router = inject(Router);

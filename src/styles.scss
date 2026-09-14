@@ -10,3 +10,34 @@
   --gray: #6b7280;
   --border: #e5e7eb;
 }
+
+/* Shared helper for centered section intro blocks */
+.section-intro {
+  text-align: center;
+  margin: 0 auto 0;
+  max-width: 900px;
+}
+
+/* Custom Scrollbar for Webkit Browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0d4a2b; /* Matches your dark green top bar/branding */
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e6ca65; /* Matches your gold/yellow accent color */
+}
+
+/* Custom Scrollbar for Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0d4a2b #f1f1f1;
+}

@@ -6,7 +6,7 @@ import { Router, RouterLink, RouterModule } from "@angular/router";
   selector: 'app-our-tours',
   imports: [TranslateModule],
   templateUrl: './our-tours.html',
-  styleUrl: './our-tours.scss',
+  styleUrls: ['./our-tours.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class OurTours {

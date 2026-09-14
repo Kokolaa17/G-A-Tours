@@ -1,19 +1,19 @@
-<nav [class.menu-open]="menuOpen">
+<nav [class.menu-open]="menuOpen" role="navigation" aria-label="Main Navigation">
   <div class="nav-lang">
     <div class="nav-lang-content">
-      <p class="active" (click)="switchLanguage('en', $event)">
-        <img src="/svgs/flag-for-flag-united-kingdom-svgrepo-com.svg"> EN
-      </p>
-      <p (click)="switchLanguage('ka', $event)">
-        <img src="/svgs/flag-for-flag-georgia-svgrepo-com.svg"> KA
-      </p>
+      <button type="button" class="lang-btn" [class.active]="currentLang === 'en'" (click)="switchLanguage('en', $event)">
+        <img src="/svgs/flag-for-flag-united-kingdom-svgrepo-com.svg" alt="English"> EN
+      </button>
+      <button type="button" class="lang-btn" [class.active]="currentLang === 'ka'" (click)="switchLanguage('ka', $event)">
+        <img src="/svgs/flag-for-flag-georgia-svgrepo-com.svg" alt="Georgian"> KA
+      </button>
     </div>
   </div>
 
   <div class="nav-content">
-    <div class="logo" routerLink="/">
+    <div class="logo" (click)="goToHome()">
       <div class="logo-icon">
-        <img src="/logo/398759390_122147276564007629_6939718363985325810_n.jpg">
+        <img src="/logo/398759390_122147276564007629_6939718363985325810_n.jpg" alt="G&A Tours logo">
       </div>
       <div class="logo-text">
         <strong>G&A Tours</strong>
@@ -21,18 +21,26 @@
       </div>
     </div>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen" [attr.aria-controls]="'main-nav'">
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <ul class="nav-links" [class.open]="menuOpen">
-      <li routerLink="/" class="active" (click)="closeMenu()">{{ 'nav.home' | translate }}</li>
-      <li routerLink="finished-tours" (click)="closeMenu()">{{ 'nav.tours' | translate }}</li>
-      <li routerLink="gallery" (click)="closeMenu()">{{ 'nav.gallery' | translate }}</li>
-      <li (click)="closeMenu()">{{ 'nav.about' | translate }}</li>
-      <li (click)="closeMenu()">{{ 'nav.contact' | translate }}</li>
+    <ul id="main-nav" class="nav-links" [class.open]="menuOpen">
+      <li routerLinkActive="active">
+        <a routerLink="/finished-tours" (click)="closeMenu()">{{ 'nav.tours' | translate }}</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/gallery" (click)="closeMenu()">{{ 'nav.gallery' | translate }}</a>
+      </li>
+      <li><a href="#" (click)="closeMenu(); $event.preventDefault()">{{ 'nav.about' | translate }}</a></li>
+      <li><a href="#contact" (click)="goToContact($event)">{{ 'nav.contact' | translate }}</a></li>
+      <li><a class="login-btn" href="#" (click)="openLogInModal($event)"><i class="fa-regular fa-user"></i> {{ 'nav.Log In' | translate }}</a></li>
     </ul>
   </div>
 </nav>
+
+@if (isLogInModalOpen()) {
+  <app-log-in-modal></app-log-in-modal>
+}

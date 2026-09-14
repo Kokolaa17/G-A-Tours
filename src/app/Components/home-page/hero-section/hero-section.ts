@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-hero-section',
   imports: [TranslateModule],
   templateUrl: './hero-section.html',
-  styleUrl: './hero-section.scss',
+  styleUrls: ['./hero-section.scss'],
 })
 export class HeroSection {
   stats = [

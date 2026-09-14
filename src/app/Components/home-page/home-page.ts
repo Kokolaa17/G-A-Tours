@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-home-page',
   imports: [HeroSection, OurTours, WhyUs, GalleryComponent, ContactComponent, TranslateModule],
   templateUrl: './home-page.html',
-  styleUrl: './home-page.scss',
+  styleUrls: ['./home-page.scss'],
 })
 export class HomePage {
 

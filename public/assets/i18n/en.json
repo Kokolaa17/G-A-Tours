@@ -5,7 +5,8 @@
     "gallery": "Gallery",
     "about": "About Us",
     "contact": "Contact",
-    "TourismAgency": "Tourism Agency"
+    "TourismAgency": "Tourism Agency",
+    "Log In": "Log In"
   },
   "hero": {
     "georgianAdventures": "Georgian Adventures",
@@ -53,5 +54,21 @@
   "gallery": {
     "title": "Gallery",
     "description": "From Our Memorable Moments"
+  },
+  "auth": {
+    "logIn": "Log In",
+    "identifierLabel": "Email or phone number",
+    "identifierPlaceholder": "you@example.com",
+    "identifierRequired": "Email or phone number is required.",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "Password is required.",
+    "forgotPassword": "Forgot password?",
+    "loggingIn": "Logging in…",
+    "noAccount": "Don't have an account?",
+    "signUp": "Register",
+    "invalidCredentials": "Invalid email/phone or password.",
+    "loginSuccess": "Login successful.",
+    "invalidPhone": "Phone number must be a valid Georgian mobile number (e.g., +995599123456 or 599123456)."
   }
 }

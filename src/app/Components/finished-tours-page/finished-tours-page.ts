@@ -5,7 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-finished-tours-page',
   imports: [TranslateModule],
   templateUrl: './finished-tours-page.html',
-  styleUrl: './finished-tours-page.scss',
+  styleUrls: ['./finished-tours-page.scss'],
 })
 export class FinishedToursPage {
 

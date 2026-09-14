@@ -5,7 +5,8 @@
     "gallery": "გალერეა",
     "about": "ჩვენ შესახებ",
     "contact": "კონტაქტი",
-    "TourismAgency": "ტურისტული სააგენტო"
+    "TourismAgency": "ტურისტული სააგენტო",
+    "Log In": "შესვლა"
   },
   "hero": {
     "georgianAdventures": "ქართული თავგადასავლები",
@@ -53,5 +54,21 @@
   "gallery": {
     "title": "გალერეა",
     "description": "ჩვენი დაუვიწყარი მომენტებიდან"
+  },
+  "auth": {
+    "logIn": "შესვლა",
+    "identifierLabel": "ელ-ფოსტა ან ტელეფონის ნომერი",
+    "identifierPlaceholder": "you@example.com",
+    "identifierRequired": "ელ-ფოსტა ან ტელეფონის ნომერი სავალდებულოა.",
+    "passwordLabel": "პაროლი",
+    "passwordPlaceholder": "შეიყვანეთ პაროლი",
+    "passwordRequired": "პაროლი სავალდებულოა.",
+    "forgotPassword": "დაგავიწყდათ პაროლი?",
+    "loggingIn": "მიმდინარეობს შესვლა…",
+    "noAccount": "არ გაქვთ ანგარიში?",
+    "signUp": "რეგისტრაცია",
+    "invalidCredentials": "არასწორი ელ-ფოსტა/ტელეფონი ან პაროლი.",
+    "loginSuccess": "ავტორიზაცია წარმატებულია.",
+    "invalidPhone": "ტელეფონის ნომერი უნდა იყოს სწორი ქართული მობილურის ნომერი (მაგ., +995599123456 ან 599123456)."
   }
 }

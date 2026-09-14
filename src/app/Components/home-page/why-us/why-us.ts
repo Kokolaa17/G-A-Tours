@@ -5,18 +5,16 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-why-us',
   imports: [TranslateModule],
   templateUrl: './why-us.html',
-  styleUrl: './why-us.scss',
+  styleUrls: ['./why-us.scss'],
 })
 export class WhyUs implements AfterViewInit {
   ngAfterViewInit() {
-    // Scroll reveal
     const reveals = document.querySelectorAll('.reveal');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     reveals.forEach(r => observer.observe(r));
 
-    // Nav active link on scroll
     const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
       let current = '';

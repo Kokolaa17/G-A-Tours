@@ -10,7 +10,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   standalone: true, // Ensure standalone is true
   imports: [RouterOutlet, NavBar, Footer, TranslateModule], // Fixed name here
   templateUrl: './app.html',
-  styleUrl: './app.scss',
+  styleUrls: ['./app.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class App {

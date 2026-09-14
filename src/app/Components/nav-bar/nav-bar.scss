@@ -1,89 +1,141 @@
-$color_1: white;
-$color_2: var(--dark);
-$color_3: var(--gray);
-$color_4: var(--terracotta);
-$font-family_1: "Playfair Display", serif;
+// ==========================================================================
+// Variables
+// ==========================================================================
+$color-white: #ffffff;
+$color-dark: var(--dark, #111);
+$color-gray: var(--gray, #666);
+$color-terracotta: var(--terracotta, #c0522a);
+$color-green: #006139;
+$color-hamburger: #1a1a0a;
+$color-border: #f0ede6;
+
+$font-family-display: "Playfair Display", serif;
+
 $breakpoint-md: 768px;
 
+$z-nav: 1500;
+$z-nav-content: 1600;
+$z-overlay: 1040;
+$z-hamburger: 1600;
+$z-mobile-menu: 1050;
+
+$transition-fast: 0.15s ease;
+$transition-base: 0.18s ease;
+$transition-menu: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+// ==========================================================================
+// Global
+// ==========================================================================
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+// ==========================================================================
+// Navigation
+// ==========================================================================
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1500;
+  z-index: $z-nav;
 
-
+  // Language switcher bar
   .nav-lang {
-    background-color: #006139;
+    background-color: $color-green;
     height: 30px;
     padding-inline: 30px;
 
     .nav-lang-content {
-      margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: flex-end;
       height: 100%;
+      margin: 0 auto;
       padding: 0 10px;
       gap: 8px;
       font-size: 12px;
 
-      p {
-        text-decoration: none;
-        color: #fff;
-        padding: 2px 6px;
-        border-radius: 3px;
-        transition: 0.2s;
+      button.lang-btn {
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 8px;
+        appearance: none;
+        background: transparent;
+        border: none;
+        border-radius: 3px;
+        padding: 4px 8px;
+        color: $color-white;
         cursor: pointer;
+        transition: background $transition-fast, color $transition-fast;
 
         img {
-          height: 20px;
-          width: 20px;
+          width: 18px;
+          height: 18px;
         }
 
-        &:hover {
-          color: $color_4;
-          background: rgba(192, 82, 42, 0.08);
-        }
-
+        &:hover,
         &.active {
-          color: #ffeb98;
-          background: rgba(192, 82, 42, 0.08);
+          color: $color-terracotta;
+          background: rgba($color-terracotta, 0.06);
         }
       }
     }
   }
 
+  // Main nav content
   .nav-content {
-    padding-inline: 50px;
-    margin: 0 auto;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.97);
-    backdrop-filter: blur(8px);
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
     height: 90px;
-    position: relative;
+    margin: 0 auto;
+    padding-inline: 50px;
+    background: rgba($color-white, 0.97);
+    backdrop-filter: blur(8px);
+    z-index: $z-nav-content;
+
+    a {
+      color: #000;
+      text-decoration: none;
+
+      &:hover {
+        color: $color-green;
+      }
+    }
 
     @media (max-width: $breakpoint-md) {
-      padding-inline: 20px;
       height: 70px;
+      padding-inline: 20px;
     }
   }
 
-  // mobile overlay backdrop
+  // Mobile overlay backdrop
   &.menu-open::after {
     content: "";
     position: fixed;
     inset: 0;
+    z-index: $z-overlay; // sits beneath nav ($z-nav) but above page content
     background: rgba(0, 0, 0, 0.35);
-    z-index: -1;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity 0.25s ease;
   }
 }
 
+
+// ==========================================================================
+// Logo
+// ==========================================================================
 .logo {
   display: flex;
   align-items: center;
@@ -92,39 +144,39 @@ nav {
   cursor: pointer;
 
   &-icon {
-    width: 100px;
-    height: 100px;
-    background: var(--terracotta);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: $font-family_1;
-    color: $color_1;
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    font-family: $font-family-display;
     font-weight: 700;
     font-size: 14px;
+    color: $color-white;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
       border-radius: 50%;
+      object-fit: cover;
     }
 
     @media (max-width: $breakpoint-md) {
-      width: 60px;
-      height: 60px;
+      width: 48px;
+      height: 48px;
     }
   }
 
   &-text {
-    font-family: $font-family_1;
+    font-family: $font-family-display;
     color: #000;
 
     strong {
       display: block;
       font-size: 18px;
-      color: $color_2;
+      color: $color-dark;
 
       @media (max-width: $breakpoint-md) {
         font-size: 15px;
@@ -133,33 +185,43 @@ nav {
 
     span {
       font-size: 11px;
-      color: $color_3;
       letter-spacing: 1px;
+      color: $color-gray;
       text-transform: uppercase;
     }
   }
 }
 
-// hamburger button
+
+// ==========================================================================
+// Hamburger button
+// ==========================================================================
 .hamburger {
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 5px;
-  background: none;
+  gap: 6px;
+  padding: 10px; // larger hit area
   border: none;
+  border-radius: 6px;
+  background: none;
   cursor: pointer;
-  padding: 4px;
-  z-index: 1100;
+  z-index: $z-hamburger; // above overlay
+  transition: background $transition-fast;
+
+  &:focus {
+    outline: 3px solid rgba(0, 97, 57, 0.12);
+    outline-offset: 2px;
+  }
 
   span {
     display: block;
     width: 24px;
     height: 2px;
-    background: #1a1a0a;
     border-radius: 2px;
-    transition: transform 0.3s, opacity 0.3s;
+    background: $color-hamburger;
     transform-origin: center;
+    transition: transform 0.3s, opacity 0.3s;
   }
 
   &.open {
@@ -182,49 +244,100 @@ nav {
   }
 }
 
+
+// ==========================================================================
+// Nav links
+// ==========================================================================
 .nav-links {
   display: flex;
   gap: 36px;
   list-style: none;
 
   li {
-    text-decoration: none;
-    color: $color_2;
     font-size: 18px;
     letter-spacing: 0.5px;
-    transition: color 0.2s;
-    cursor: pointer;
+    color: $color-dark;
+    text-decoration: none;
+    transition: color $transition-base, background $transition-base;
 
-    &:hover {
-      color: #006139;
+    a {
+      display: inline-block;
+      padding: 6px 8px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:hover,
+    a:focus {
+      color: $color-green;
+      background: rgba(0, 97, 57, 0.03);
+      border-radius: 4px;
+      outline: none;
     }
 
     &.active {
-      color: #006139;
+      color: $color-green;
+      font-weight: 600;
+    }
+
+    // Login button
+    .login-btn {
+      all: unset; // strip default <button> UA styles (border, bg, font, etc.)
+      box-sizing: border-box; // keep padding/border inside the declared size
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 50px;
+      background: $color-green;
+      color: $color-white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background $transition-base, color $transition-base;
+
+      &:hover,
+      &:focus-visible {
+        background: #00753f; // slightly brighter/richer green, not darker toward black
+        color: $color-white;
+      }
+
+      &:active,
+      &.active {
+        background: #004d2e; // a touch darker than base, still clearly green
+        color: $color-white;
+      }
+
+      &:focus-visible {
+        outline: 3px solid rgba(0, 97, 57, 0.25);
+        outline-offset: 2px;
+      }
     }
   }
 
+  // Mobile menu
   @media (max-width: $breakpoint-md) {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 100%;
-    height: 100dvh;
-    background: #fff;
+    display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
+    width: 100%;
+    height: 100dvh;
     padding: 50px 36px 40px;
+    background: $color-white;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
-    transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1050;
+    z-index: $z-mobile-menu;
+    transition: right $transition-menu;
 
     li {
       width: 100%;
-      font-size: 20px;
       padding: 16px 0;
-      border-bottom: 1px solid #f0ede6;
+      font-size: 20px;
       text-align: center;
+      border-bottom: 1px solid $color-border;
 
       &:last-child {
         border-bottom: none;

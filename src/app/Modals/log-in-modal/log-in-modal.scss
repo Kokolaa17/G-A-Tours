@@ -1,0 +1,285 @@
+// Design tokens pulled from the G&A Tours hero
+// Deep forest green (header, nav, primary text accents)
+$color-green-900: #143824;
+$color-green-800: #1b4332;
+$color-green-700: #2d6a4f;
+
+// Warm gold / cream (badge, CTA button, logo)
+$color-gold-500: #e8cd7a;
+$color-gold-400: #f0dfa0;
+$color-gold-300: #f6ead0;
+
+$color-white-bg: #fff;
+$color-ink: #22291f;
+$color-ink-soft: #5c6459;
+$color-border: #e7e0cd;
+$color-error: #b3261e;
+
+@font-face {
+  font-family: 'Modal Fallback';
+  src: local('Georgia');
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(10, 20, 14, 0.55);
+  backdrop-filter: blur(3px);
+  animation: fade-in 0.18s ease-out;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 408px;
+  background: $color-white-bg;
+  border-radius: 14px;
+  border: 1px solid $color-border;
+  box-shadow: 0 24px 60px rgba(10, 30, 20, 0.28);
+  padding: 40px 36px 32px;
+  animation: rise-in 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  color: $color-ink-soft;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.15s ease, color 0.15s ease;
+
+  &:hover {
+    background: rgba(27, 67, 50, 0.08);
+    color: $color-green-800;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-green-700;
+    outline-offset: 2px;
+  }
+}
+
+.modal-title {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: $color-green-900;
+  text-align: center;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  margin-bottom: 30px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field-label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: $color-green-900;
+}
+
+.forgot-link {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  color: $color-green-700;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  color: $color-ink;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &::placeholder {
+    color: #b5ad98;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-green-700;
+    box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.14);
+  }
+
+  &.invalid {
+    border-color: $color-error;
+  }
+
+  &.invalid:focus {
+    box-shadow: 0 0 0 3px rgba(179, 38, 30, 0.12);
+  }
+}
+
+.password-input {
+  position: relative;
+
+  input {
+    padding-right: 42px;
+  }
+
+  .toggle-visibility {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    color: $color-ink-soft;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 4px;
+    border-radius: 6px;
+
+    &:hover {
+      color: $color-green-800;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $color-green-700;
+      outline-offset: 1px;
+    }
+  }
+}
+
+.field-error {
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  color: $color-error;
+}
+
+.server-error {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: $color-error;
+  background: rgba(179, 38, 30, 0.08);
+  border: 1px solid rgba(179, 38, 30, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 999px;
+  background: #F8E7A4;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+
+  &:hover:not(:disabled) {
+    background: $color-gold-500;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.99);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-green-700;
+    outline-offset: 2px;
+  }
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(20, 56, 36, 0.3);
+  border-top-color: $color-green-900;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.signup-line {
+  margin: 22px 0 0;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-size: 13.5px;
+  color: $color-ink-soft;
+
+  a {
+    color: $color-green-700;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .modal-card {
+    padding: 32px 24px 26px;
+  }
+
+  .modal-title {
+    font-size: 24px;
+  }
+}

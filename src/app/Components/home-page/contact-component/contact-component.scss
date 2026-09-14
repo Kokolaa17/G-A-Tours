@@ -1,9 +1,38 @@
- /* SECTION COMMON */
-  section { padding: 90px 5%; }
-  .section-tag { display: inline-block; font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #006139; font-weight: 700; margin-bottom: 12px; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 40px); color: var(--dark); margin-bottom: 16px; }
-  .section-desc { color: var(--gray); font-size: 16px; line-height: 1.7; max-width: 600px; }
-  .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px; flex-wrap: wrap; gap: 20px; }
+/* SECTION COMMON */
+section {
+  padding: 90px 5%;
+}
+.section-tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #006139;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(26px, 3vw, 40px);
+  color: var(--dark);
+  margin-bottom: 16px;
+}
+.section-desc {
+  color: var(--gray);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-inline: auto;
+  text-align: center;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
 /* CONTACT */
 #contact {
   background: white;
@@ -47,7 +76,7 @@
   width: 72px;
   height: 72px;
   margin: 0 auto 20px;
-    background: #FFEB98;
+  background: #ffeb98;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -68,6 +97,12 @@
   }
 }
 
-
-.reveal { opacity: 0; transform: translateY(50px); transition: all 0.7s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
