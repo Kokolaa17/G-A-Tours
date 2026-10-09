@@ -256,6 +256,61 @@ section#gallery {
       }
     }
   }
+
+    .gallery-status {
+    text-align: center;
+    color: var(--gray);
+    font-size: 15px;
+    padding: 40px 0;
+  }
+
+  .gallery-grid {
+    transition: opacity 0.2s;
+
+    &.is-loading {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+  }
+
+  .gallery-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 44px;
+
+    .page-btn {
+      min-width: 40px;
+      height: 40px;
+      padding: 0 12px;
+      border-radius: 8px;
+      border: 1px solid #ece9e2;
+      background: #fff;
+      color: var(--dark);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+      &:hover:not(:disabled):not(.active) {
+        border-color: #006139;
+        color: #006139;
+      }
+
+      &.active {
+        background: #006139;
+        border-color: #006139;
+        color: #fff;
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 
 @keyframes fadeIn {

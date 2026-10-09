@@ -18,6 +18,7 @@
           autocomplete="username"
           [placeholder]="'auth.identifierPlaceholder' | translate"
           [class.invalid]="identifier?.invalid && identifier?.touched"
+          value="{{ savedEmail() }}"
         />
         @if (identifier?.invalid && identifier?.touched) {
           <span class="field-error">{{ 'auth.identifierRequired' | translate }}</span>
@@ -65,6 +66,7 @@
       </button>
     </form>
 
-    <p class="signup-line">{{ 'auth.noAccount' | translate }} <a href="#" (click)="$event.preventDefault()">{{ 'auth.signUp' | translate }}</a></p>
+    <p class="signup-line">{{ 'auth.noAccount' | translate }} <a href="#" (click)="goToRegisterPage($event)">{{ 'auth.signUp' | translate }}</a></p>
   </div>
 </div>
+

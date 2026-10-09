@@ -1,14 +1,22 @@
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { ModalService } from '../../Services/modal-service';
+import { AuthService } from '../../Services/auth-service';
 import { LogInModal } from '../../Modals/log-in-modal/log-in-modal';
+import { VerifyEmailModal } from '../../Modals/verify-email-modal/verify-email-modal';
 
 @Component({
   selector: 'app-nav-bar',
-  imports: [TranslateModule, RouterLink, RouterLinkActive, LogInModal],
+  imports: [
+    TranslateModule,
+    RouterLink,
+    RouterLinkActive,
+    LogInModal,
+    VerifyEmailModal
+  ],
   templateUrl: './nav-bar.html',
   styleUrls: ['./nav-bar.scss'],
 })
@@ -17,16 +25,26 @@ export class NavBar implements OnInit {
   private readonly router = inject(Router);
   private readonly viewport = inject(ViewportScroller);
   private readonly modalService = inject(ModalService);
+  private readonly authService = inject(AuthService);
+  private readonly destroyRef = inject(DestroyRef);
 
   currentLang = 'en';
   menuOpen = false;
+
   isLogInModalOpen = computed(() => this.modalService.isLogInModalOpen());
+  isVerifyModalOpen = computed(() => this.modalService.isVerifyEmailModalOpen());
+  isUserLoggedIn = this.authService.isLoggedIn;
+  loggedInUserName = this.authService.loggedInUserName;
+  isAdmin = computed(() => this.authService.currentUser()?.role === 'Admin');
 
   ngOnInit() {
-    this.currentLang = this.translate.currentLang || this.translate.getDefaultLang() || 'en';
-    
+    this.currentLang =
+      this.translate.currentLang ||
+      this.translate.getDefaultLang() ||
+      'en';
+
     this.translate.onLangChange
-      .pipe(takeUntilDestroyed())
+      .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(event => {
         this.currentLang = event.lang;
       });
@@ -35,7 +53,7 @@ export class NavBar implements OnInit {
   switchLanguage(lang: string, event: Event) {
     event.preventDefault();
     this.translate.use(lang);
-    this.currentLang = lang; 
+    this.currentLang = lang;
   }
 
   toggleMenu() {
@@ -47,38 +65,55 @@ export class NavBar implements OnInit {
   }
 
   goToContact(event?: Event) {
-    if (event) { event.preventDefault(); }
+    if (event) {
+      event.preventDefault();
+    }
+
     this.closeMenu();
+
     const fragment = 'contact';
 
     const smoothScrollToAnchor = () => {
       const el = document.getElementById(fragment);
+
       if (el && 'scrollIntoView' in el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        el.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+
         return true;
       }
+
       return false;
     };
 
-    const scroll = () => setTimeout(() => {
-      if (!smoothScrollToAnchor()) {
-        this.viewport.scrollToAnchor(fragment);
-      }
-    }, 50);
+    const scroll = () =>
+      setTimeout(() => {
+        if (!smoothScrollToAnchor()) {
+          this.viewport.scrollToAnchor(fragment);
+        }
+      }, 50);
 
     if (this.router.url === '/' || this.router.url === '') {
       scroll();
       return;
     }
 
-    this.router.navigate(['/'], { fragment }).then(() => scroll());
+    this.router
+      .navigate(['/'], { fragment })
+      .then(() => scroll());
   }
 
   goToHome() {
     this.closeMenu();
+
     this.router.navigate(['/']).then(() => {
       try {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
       } catch {
         this.viewport.scrollToPosition([0, 0]);
       }
@@ -86,9 +121,23 @@ export class NavBar implements OnInit {
   }
 
   openLogInModal(event?: Event) {
-    if (event) { event.preventDefault(); }
-    this.viewport.scrollToPosition([0, 0], { behavior: 'smooth' });
+    if (event) {
+      event.preventDefault();
+    }
+
+    this.viewport.scrollToPosition(
+      [0, 0],
+      { behavior: 'smooth' }
+    );
+
     this.closeMenu();
     this.modalService.openLogInModal();
+  }
+
+  logout(event?: Event) {
+    event?.preventDefault();
+    this.closeMenu();
+    this.authService.logout();
+    this.router.navigate(['/']);
   }
 }

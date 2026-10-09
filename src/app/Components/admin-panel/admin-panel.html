@@ -1,0 +1,85 @@
+<div class="admin-page">
+  <!-- Hero -->
+  <section class="hero">
+    <svg class="hero__mountains" viewBox="0 0 700 280" preserveAspectRatio="xMaxYMax slice" aria-hidden="true">
+      <polygon points="0,280 150,40 225,140 313,0 450,190 525,100 700,270 700,280" />
+    </svg>
+
+    <div class="hero__content">
+      <span class="hero__badge">Admin Panel</span>
+      <h1 class="hero__title">Welcome back, {{ admin.name }}</h1>
+      <p class="hero__subtitle">Manage everything about Georgian Adventures from one place.</p>
+    </div>
+  </section>
+
+  <!-- Quick links -->
+  <section class="tiles">
+    <a class="tile" routerLink="/admin/tours">
+      <span class="tile__icon" aria-hidden="true">🏔️</span>
+      <h2 class="tile__title">Manage Tours</h2>
+      <p class="tile__meta">{{ stats.tours }} records</p>
+    </a>
+
+    <a class="tile" routerLink="/admin/bookings">
+      <span class="tile__icon" aria-hidden="true">🧾</span>
+      <h2 class="tile__title">Manage Bookings</h2>
+      <p class="tile__meta">{{ stats.bookings }} records</p>
+    </a>
+
+     <a class="tile" routerLink="/admin/gallery">
+      <span class="tile__icon" aria-hidden="true">🖼️</span>
+      <h2 class="tile__title">Manage Gallery</h2>
+      <p class="tile__meta">{{ stats.gallery }} records</p>
+    </a>
+
+    <a class="tile" routerLink="/admin/users">
+      <span class="tile__icon" aria-hidden="true">👥</span>
+      <h2 class="tile__title">Manage Users</h2>
+      <p class="tile__meta">{{ stats.users }} records</p>
+    </a>
+
+    <a class="tile" routerLink="/admin/contact">
+      <span class="tile__icon" aria-hidden="true">📞</span>
+      <h2 class="tile__title">Contact</h2>
+      <p class="tile__meta">{{ stats.users }} records</p>
+    </a>
+
+    <a class="tile" routerLink="/admin/analytics">
+      <span class="tile__icon" aria-hidden="true">📊</span>
+      <h2 class="tile__title">Analytics</h2>
+      <p (click)="getAllUsers()" class="tile__meta">Live insights</p>
+    </a>
+  </section>
+
+  <!-- Admin info -->
+  <section class="info">
+    <div class="panel panel--details">
+      <h2 class="panel__title">Administrator Information</h2>
+
+      <dl class="details">
+        <div class="details__row">
+          <dt>Name</dt>
+          <dd>{{ admin.name }}</dd>
+        </div>
+        <div class="details__row">
+          <dt>Email</dt>
+          <dd>{{ admin.email }}</dd>
+        </div>
+        <div class="details__row">
+          <dt>Role</dt>
+          <dd>{{ admin.role }}</dd>
+        </div>
+        <div class="details__row details__row--actions">
+          <button class="logout-btn" (click)="logOut()">
+            <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+            Log Out
+          </button>
+        </div>
+      </dl>
+    </div>
+
+    <div class="panel panel--profile">
+      <div class="avatar" aria-hidden="true">{{ initials }}</div>
+    </div>
+  </section>
+</div>

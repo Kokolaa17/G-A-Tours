@@ -1,0 +1,616 @@
+// Add once to index.html <head> (or styles.scss via @import):
+
+$green-deep: #06391f;
+$green-main: #0a5c31;
+$green-badge: #11703f;
+$green-accent: #0b5d33;
+
+$page-bg: #f7f9f8;
+$surface: #ffffff;
+$surface-border: #FFEB98;
+$text-dark: #1a2e22;
+$text-muted: #617367;$green-deep: #06391f;
+$green-main: #0a5c31;
+$green-badge: #11703f;
+$green-accent: #0b5d33;
+
+$page-bg: #f7f9f8;
+$surface: #ffffff;
+$surface-border: #FFEB98;
+$text-dark: #1a2e22;
+$text-muted: #617367;
+$avatar-bg: #fef3c7;
+$radius: 12px;
+$gap: 24px;
+
+$font-display: 'Playfair Display', Georgia, serif;
+$font-body: 'EB Garamond', Georgia, serif;
+
+:host {
+  display: block;
+  background: $page-bg;
+  font-family: $font-body;
+  font-size: 18px;
+  color: $text-dark;
+}
+
+.admin-page {
+  max-width: 1344px;
+  margin: 120px auto 0px;
+  padding: 38px 24px 48px;
+  box-sizing: border-box;
+}
+
+// ---------- Hero ----------
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: $radius;
+  background: linear-gradient(100deg, $green-deep 0%, $green-main 100%);
+  padding: 48px 78px 50px;
+  min-height: 279px;
+  box-sizing: border-box;
+  background-image: url('/wallpapers/adminpanelbg.jpg');
+  background-size: cover;
+  background-position: bottom left;
+  border: 1px solid $surface-border;
+
+  &__mountains {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 52%;
+    fill: rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #006139;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 6px;
+  }
+
+  &__title {
+    margin: 26px 0 8px;
+    font-family: $font-display;
+    font-size: clamp(2.4rem, 5vw, 3.9rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// ---------- Tiles ----------
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $gap;
+  margin-top: 32px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background: $surface;
+  border: 1px solid $surface-border;
+  border-radius: $radius;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(10, 92, 49, 0.08);
+    border-color: rgba(10, 92, 49, 0.3);
+
+    .tile__meta {
+      background: $green-main;
+      color: #fff;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $green-main;
+    outline-offset: 3px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    background: #eef5f1;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: $text-dark;
+    line-height: 1.2;
+  }
+
+  &__meta {
+    margin: 10px 0px 0px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $green-main;
+    background: #f2f7f4;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
+  }
+}
+
+// ---------- Info section ----------
+.info {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: $gap;
+  margin-top: 32px;
+}
+
+.panel {
+  background: $surface;
+  border: 1px solid $surface-border;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  border-radius: $radius;
+  padding: 32px;
+
+  &__title {
+    margin: 0 0 24px;
+    font-family: $font-display;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  &--profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.details {
+  margin: 0;
+
+  &__row {
+    display: flex;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid $surface-border;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &--actions {
+      display: flex;
+      justify-content: flex-start;
+      padding-top: 20px;
+      border-bottom: none !important;
+    }
+  }
+
+  dt {
+    flex: 0 0 160px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.2rem;
+    color: $text-dark;
+    font-weight: 500;
+  }
+}
+
+// ---------- Logout Button ----------
+.logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: transparent;
+  color: #b91c1c;
+  border: 1.5px solid rgba(185, 28, 28, 0.3);
+  border-radius: 8px;
+  font-family: $font-body;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  i {
+    font-size: 0.95rem;
+  }
+
+  &:hover {
+    background: #b91c1c;
+    color: #ffffff;
+    border-color: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+    background: #991b1b;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #b91c1c;
+    outline-offset: 3px;
+  }
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $avatar-bg 0%, #fde047 100%);
+  color: $green-deep;
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 700;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+// ---------- Responsive ----------
+@media (max-width: 1024px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 36px 28px;
+  }
+
+  .info {
+    grid-template-columns: 1fr;
+  }
+
+  .details__row {
+    flex-direction: column;
+    gap: 4px;
+
+    dt {
+      flex-basis: auto;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile,
+  .logout-btn {
+    transition: none;
+  }
+}
+$avatar-bg: #fef3c7;
+$radius: 12px;
+$gap: 24px;
+
+$font-display: 'Playfair Display', Georgia, serif;
+$font-body: 'EB Garamond', Georgia, serif;
+
+:host {
+  display: block;
+  background: $page-bg;
+  font-family: $font-body;
+  font-size: 18px;
+  color: $text-dark;
+}
+
+.admin-page {
+  max-width: 1344px;
+  margin: 120px auto 0px;
+  padding: 38px 24px 48px;
+  box-sizing: border-box;
+}
+
+// ---------- Hero ----------
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-radius: $radius;
+  background: linear-gradient(100deg, $green-deep 0%, $green-main 100%);
+  padding: 48px 78px 50px;
+  min-height: 279px;
+  box-sizing: border-box;
+    background-image: url('/wallpapers/adminpanelbg.jpg');
+  background-size: cover;
+  background-position: bottom left;
+    border: 1px solid $surface-border;
+  &__mountains {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 52%;
+    fill: rgba(255, 255, 255, 0.15);
+    pointer-events: none;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__badge {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #006139;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 6px;
+  }
+
+  &__title {
+    margin: 26px 0 8px;
+    font-family: $font-display;
+    font-size: clamp(2.4rem, 5vw, 3.9rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+// ---------- Tiles (Redesigned) ----------
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $gap;
+  margin-top: 32px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  background: $surface;
+  border: 1px solid $surface-border;
+  border-radius: $radius;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(10, 92, 49, 0.08);
+    border-color: rgba(10, 92, 49, 0.3);
+
+    .tile__meta {
+      background: $green-main;
+      color: #fff;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $green-main;
+    outline-offset: 3px;
+  }
+
+  // Header section inside tile (Icon + Title structured nicely)
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 50px;
+    height: 50px;
+    background: #eef5f1;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    margin: 0;
+    font-family: $font-display;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: $text-dark;
+    line-height: 1.2;
+  }
+
+  &__meta {
+    margin: 10px 0px 0px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $green-main;
+    background: #f2f7f4;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
+  }
+}
+
+// ---------- Info section ----------
+.info {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: $gap;
+  margin-top: 32px;
+}
+
+.panel {
+  background: $surface;
+  border: 1px solid $surface-border;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  border-radius: $radius;
+  padding: 32px;
+
+  &__title {
+    margin: 0 0 24px;
+    font-family: $font-display;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  &--profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.details {
+  margin: 0;
+
+  &__row {
+    display: flex;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px solid $surface-border;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  dt {
+    flex: 0 0 160px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  dd {
+    margin: 0;
+    font-size: 1.2rem;
+    color: $text-dark;
+    font-weight: 500;
+  }
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, $avatar-bg 0%, #fde047 100%);
+  color: $green-deep;
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 700;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+// ---------- Responsive ----------
+@media (max-width: 1024px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 36px 28px;
+  }
+
+  .info {
+    grid-template-columns: 1fr;
+  }
+
+  .details__row {
+    flex-direction: column;
+    gap: 4px;
+
+    dt {
+      flex-basis: auto;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .tiles {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tile {
+    transition: none;
+  }
+}

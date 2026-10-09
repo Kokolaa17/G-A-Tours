@@ -1,0 +1,68 @@
+<div class="vem-backdrop" (click)="onBackdropClick($event)">
+    <div class="vem-card" role="dialog" aria-modal="true" aria-labelledby="vem-title">
+        <button type="button" class="vem-close" aria-label="Close" (click)="onClose()">
+        &#10005;
+        </button>
+
+        <h2 id="vem-title" class="vem-title">Verify your email</h2>
+
+        <p class="vem-subtitle">
+        We've sent a 6-digit verification code to
+        @if (email) {
+            <strong class="vem-email">{{ email }}</strong>
+        } @else {
+            <strong class="vem-email">your email</strong>
+        }. Enter it below to continue.
+        </p>
+
+        <div class="vem-field-label">Verification code</div>
+
+        <div class="vem-digits" (paste)="onPaste($event)">
+        @for (digit of digits; track $index) {
+            <input
+            #digitInput
+            class="vem-digit"
+            type="text"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+            maxlength="1"
+            [value]="digit"
+            [class.vem-digit-filled]="digit"
+            [class.vem-digit-error]="errorMessage"
+            [disabled]="loading"
+            (input)="onInput($event, $index)"
+            (keydown)="onKeydown($event, $index)"
+            />
+        }
+        </div>
+
+        @if (errorMessage) {
+        <div class="vem-error">{{ errorMessage }}</div>
+        }
+
+        <button
+        type="button"
+        class="vem-submit"
+        [disabled]="!isComplete || loading"
+        (click)="submit()"
+        >
+        @if (loading) {
+            <span class="vem-spinner" aria-hidden="true"></span>
+            Verifying...
+        } @else {
+            Verify
+        }
+        </button>
+
+        <div class="vem-resend">
+        Didn't get a code?
+        @if (secondsLeft > 0) {
+            <span class="vem-resend-cooldown">Resend in {{ secondsLeft }}s</span>
+        } @else {
+            <button type="button" class="vem-resend-link" (click)="onResend()">
+            Resend code
+            </button>
+        }
+        </div>
+    </div>
+</div>

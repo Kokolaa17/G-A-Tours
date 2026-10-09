@@ -7,18 +7,32 @@
     </div>
   </div>
 
-  <div class="gallery-grid">
-    @for (item of galleryItems; track item.src) {
-      <div class="gallery-card" (click)="openLightbox(item.src, item.location, item.name)">
+  @if (gallery.isLoading() && images().length === 0) {
+    <p class="gallery-status">Loading...</p>
+  } @else if (gallery.error()) {
+    <p class="gallery-status">Failed to load gallery.</p>
+  } @else if (images().length === 0) {
+    <p class="gallery-status">No images yet.</p>
+  }
+
+  <div class="gallery-grid" [class.is-loading]="gallery.isLoading()">
+    @for (image of images(); track image.id) {
+      <div class="gallery-card"
+           (click)="openLightbox(apiOrigin + image.url, image.name, image.location)">
         <div class="gallery-img">
-          <img [src]="item.src" [alt]="item.location">
-          <span class="gallery-badge">{{ item.location }}</span>
+          <img [src]="apiOrigin + image.url" [alt]="image.name" loading="lazy">
+          <span class="gallery-badge">{{ image.location }}</span>
         </div>
         <div class="gallery-body">
-          <h3>{{ item.name }}</h3>
-          <p>{{ item.location }}</p>
+          <h3>{{ image.name }}</h3>
+          @if (image.caption) {
+            <p>{{ image.caption }}</p>
+          } @else {
+            <p>{{ image.location }}</p>
+          }
           <div class="gallery-footer">
-            <button class="btn-sm" (click)="openLightbox(item.src, item.location, item.name); $event.stopPropagation()">
+            <button class="btn-sm"
+                    (click)="openLightbox(apiOrigin + image.url, image.name, image.location); $event.stopPropagation()">
               View Photo
             </button>
           </div>
@@ -27,14 +41,28 @@
     }
   </div>
 
-  @if (selectedImage) {
+  @if (totalPages() > 1) {
+    <nav class="gallery-pagination">
+      <button class="page-btn" (click)="goToPage(page() - 1)" [disabled]="!hasPrevious()">‹</button>
+
+      @for (p of pages(); track p) {
+        <button class="page-btn" [class.active]="p === page()" (click)="goToPage(p)">
+          {{ p }}
+        </button>
+      }
+
+      <button class="page-btn" (click)="goToPage(page() + 1)" [disabled]="!hasNext()">›</button>
+    </nav>
+  }
+
+  @if (selectedImage(); as img) {
     <div class="lightbox" (click)="closeLightbox()">
       <button class="lightbox-close" (click)="closeLightbox()">✕</button>
       <div class="lightbox-content" (click)="$event.stopPropagation()">
-        <img [src]="selectedImage.src" [alt]="selectedImage.title">
+        <img [src]="img.src" [alt]="img.title">
         <div class="lightbox-caption">
-          <h3>{{ selectedImage.title }}</h3>
-          <span>{{ selectedImage.subtitle }}</span>
+          <h3>{{ img.title }}</h3>
+          <span>{{ img.subtitle }}</span>
         </div>
       </div>
     </div>

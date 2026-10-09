@@ -1,3 +1,4 @@
+
 // ==========================================================================
 // Variables
 // ==========================================================================
@@ -8,6 +9,8 @@ $color-terracotta: var(--terracotta, #c0522a);
 $color-green: #006139;
 $color-hamburger: #1a1a0a;
 $color-border: #f0ede6;
+$color-active-bg: rgba(0, 97, 57, 0.10);
+$color-hover-bg: rgba(0, 97, 57, 0.06);
 
 $font-family-display: "Playfair Display", serif;
 
@@ -28,8 +31,11 @@ $transition-menu: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 // Global
 // ==========================================================================
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *,
+  *::before,
+  *::after {
     transition: none !important;
+    animation: none !important;
   }
 }
 
@@ -44,10 +50,13 @@ html {
 nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: $z-nav;
 
-  // Language switcher bar
+  // ------------------------------------------------------------------------
+  // Language Switcher
+  // ------------------------------------------------------------------------
   .nav-lang {
     background-color: $color-green;
     height: 30px;
@@ -74,11 +83,14 @@ nav {
         padding: 4px 8px;
         color: $color-white;
         cursor: pointer;
-        transition: background $transition-fast, color $transition-fast;
+        transition:
+          background $transition-fast,
+          color $transition-fast;
 
         img {
           width: 18px;
           height: 18px;
+          object-fit: contain;
         }
 
         &:hover,
@@ -86,11 +98,18 @@ nav {
           color: $color-terracotta;
           background: rgba($color-terracotta, 0.06);
         }
+
+        &:focus-visible {
+          outline: 2px solid $color-white;
+          outline-offset: 2px;
+        }
       }
     }
   }
 
-  // Main nav content
+  // ------------------------------------------------------------------------
+  // Main Navigation Content
+  // ------------------------------------------------------------------------
   .nav-content {
     position: relative;
     display: flex;
@@ -102,11 +121,16 @@ nav {
     padding-inline: 50px;
     background: rgba($color-white, 0.97);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     z-index: $z-nav-content;
 
     a {
       color: #000;
       text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       &:hover {
         color: $color-green;
@@ -119,16 +143,28 @@ nav {
     }
   }
 
-  // Mobile overlay backdrop
-  &.menu-open::after {
+  // ------------------------------------------------------------------------
+  // Mobile Overlay
+  // ------------------------------------------------------------------------
+  &::after {
     content: "";
     position: fixed;
     inset: 0;
-    z-index: $z-overlay; // sits beneath nav ($z-nav) but above page content
+    z-index: $z-overlay;
     background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.25s ease,
+      visibility 0.25s ease;
+  }
+
+  // Overlay appears only when the menu is open
+  &.menu-open::after {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
-    transition: opacity 0.25s ease;
   }
 }
 
@@ -150,13 +186,16 @@ nav {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: var(--terracotta);
+    background: var(--terracotta, #c0522a);
     font-family: $font-family-display;
     font-weight: 700;
     font-size: 14px;
     color: $color-white;
+    overflow: hidden;
+    flex-shrink: 0;
 
     img {
+      display: block;
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -194,23 +233,28 @@ nav {
 
 
 // ==========================================================================
-// Hamburger button
+// Hamburger Button
 // ==========================================================================
 .hamburger {
   display: none;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 6px;
-  padding: 10px; // larger hit area
+  padding: 10px;
   border: none;
   border-radius: 6px;
-  background: none;
+  background: transparent;
   cursor: pointer;
-  z-index: $z-hamburger; // above overlay
+  z-index: $z-hamburger;
   transition: background $transition-fast;
 
-  &:focus {
-    outline: 3px solid rgba(0, 97, 57, 0.12);
+  &:hover {
+    background: rgba(0, 97, 57, 0.05);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(0, 97, 57, 0.2);
     outline-offset: 2px;
   }
 
@@ -221,12 +265,15 @@ nav {
     border-radius: 2px;
     background: $color-hamburger;
     transform-origin: center;
-    transition: transform 0.3s, opacity 0.3s;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
   }
 
+  // Animated X icon
   &.open {
     span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
+      transform: translateY(8px) rotate(45deg);
     }
 
     span:nth-child(2) {
@@ -235,7 +282,7 @@ nav {
     }
 
     span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+      transform: translateY(-8px) rotate(-45deg);
     }
   }
 
@@ -246,65 +293,91 @@ nav {
 
 
 // ==========================================================================
-// Nav links
+// Navigation Links
 // ==========================================================================
 .nav-links {
   display: flex;
+  align-items: center;
   gap: 36px;
   list-style: none;
+  margin: 0;
+  padding: 0;
 
   li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-size: 18px;
     letter-spacing: 0.5px;
     color: $color-dark;
-    text-decoration: none;
-    transition: color $transition-base, background $transition-base;
 
     a {
       display: inline-block;
-      padding: 6px 8px;
+      padding: 8px 12px;
+      border-radius: 5px;
       color: inherit;
+      background: transparent;
       text-decoration: none;
+      transition:
+        color $transition-base,
+        background $transition-base;
     }
 
-    &:hover,
-    a:focus {
+    // Hover
+    &:hover > a {
       color: $color-green;
-      background: rgba(0, 97, 57, 0.03);
-      border-radius: 4px;
-      outline: none;
+      background: $color-hover-bg;
     }
 
-    &.active {
+    // Keyboard focus
+    a:focus-visible {
+      outline: 2px solid $color-green;
+      outline-offset: 3px;
+    }
+
+    // Active route
+    a.active,
+    a[aria-current="page"] {
       color: $color-green;
+      background: $color-active-bg;
       font-weight: 600;
     }
 
-    // Login button
+    // Keep active styling while hovering
+    a.active:hover,
+    a[aria-current="page"]:hover {
+      color: $color-green;
+      background: $color-active-bg;
+    }
+
+    // ----------------------------------------------------------------------
+    // Login Button
+    // ----------------------------------------------------------------------
     .login-btn {
-      all: unset; // strip default <button> UA styles (border, bg, font, etc.)
-      box-sizing: border-box; // keep padding/border inside the declared size
+      all: unset;
+      box-sizing: border-box;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 6px 12px;
+      padding: 8px 16px;
       border-radius: 50px;
-      background: $color-green;
-      color: $color-white;
+      background: rgba(0, 97, 57, 0.1);
+      color: #000 !important;
       font-size: 16px;
+      font-weight: 500 !important;
       cursor: pointer;
-      transition: background $transition-base, color $transition-base;
+      transition:
+        background $transition-base,
+        color $transition-base;
 
-      &:hover,
-      &:focus-visible {
-        background: #00753f; // slightly brighter/richer green, not darker toward black
-        color: $color-white;
+      &:hover {
+        background: #00753f;
+        color: $color-white !important;
       }
 
-      &:active,
-      &.active {
-        background: #004d2e; // a touch darker than base, still clearly green
+      &:active {
+        background: #004d2e;
         color: $color-white;
       }
 
@@ -315,22 +388,35 @@ nav {
     }
   }
 
-  // Mobile menu
+  // ------------------------------------------------------------------------
+  // Mobile Menu
+  // ------------------------------------------------------------------------
   @media (max-width: $breakpoint-md) {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 0;
     width: 100%;
+    height: 100vh;
     height: 100dvh;
-    padding: 50px 36px 40px;
+    padding: 90px 36px 40px;
+    margin: 0;
+    overflow-y: auto;
     background: $color-white;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
     z-index: $z-mobile-menu;
-    transition: right $transition-menu;
+
+    // Closed state
+    transform: translateX(100%);
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+      transform $transition-menu,
+      visibility 0s linear 0.35s;
 
     li {
       width: 100%;
@@ -342,10 +428,47 @@ nav {
       &:last-child {
         border-bottom: none;
       }
+
+      a {
+        display: block;
+        width: 100%;
+        padding: 12px;
+        border-radius: 5px;
+        background: transparent;
+      }
+
+      // Mobile hover
+      &:hover > a {
+        color: $color-green;
+        background: $color-hover-bg;
+      }
+
+      // Active page on mobile
+      a.active,
+      a[aria-current="page"] {
+        color: $color-green;
+        background: $color-active-bg;
+        font-weight: 600;
+      }
+
+      // Preserve active state on hover
+      a.active:hover,
+      a[aria-current="page"]:hover {
+        color: $color-green;
+        background: $color-active-bg;
+      }
     }
 
+    // Open state
     &.open {
-      right: 0;
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+
+      transition:
+        transform $transition-menu,
+        visibility 0s;
     }
   }
 }
+

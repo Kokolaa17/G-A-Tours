@@ -1,46 +1,188 @@
-<nav [class.menu-open]="menuOpen" role="navigation" aria-label="Main Navigation">
+<nav
+  [class.menu-open]="menuOpen"
+  role="navigation"
+  aria-label="Main Navigation"
+>
+  <!-- Language Switcher -->
   <div class="nav-lang">
     <div class="nav-lang-content">
-      <button type="button" class="lang-btn" [class.active]="currentLang === 'en'" (click)="switchLanguage('en', $event)">
-        <img src="/svgs/flag-for-flag-united-kingdom-svgrepo-com.svg" alt="English"> EN
+      <button
+        type="button"
+        class="lang-btn"
+        [class.active]="currentLang === 'en'"
+        [attr.aria-pressed]="currentLang === 'en'"
+        (click)="switchLanguage('en', $event)"
+      >
+        <img
+          src="/svgs/flag-for-flag-united-kingdom-svgrepo-com.svg"
+          alt="English"
+        />
+        EN
       </button>
-      <button type="button" class="lang-btn" [class.active]="currentLang === 'ka'" (click)="switchLanguage('ka', $event)">
-        <img src="/svgs/flag-for-flag-georgia-svgrepo-com.svg" alt="Georgian"> KA
+
+      <button
+        type="button"
+        class="lang-btn"
+        [class.active]="currentLang === 'ka'"
+        [attr.aria-pressed]="currentLang === 'ka'"
+        (click)="switchLanguage('ka', $event)"
+      >
+        <img
+          src="/svgs/flag-for-flag-georgia-svgrepo-com.svg"
+          alt="Georgian"
+        />
+        KA
       </button>
     </div>
   </div>
 
+  <!-- Main Navigation -->
   <div class="nav-content">
-    <div class="logo" (click)="goToHome()">
+
+    <!-- Logo -->
+    <div
+      class="logo"
+      role="button"
+      tabindex="0"
+      aria-label="Go to homepage"
+      (click)="goToHome()"
+      (keydown.enter)="goToHome()"
+    >
       <div class="logo-icon">
-        <img src="/logo/398759390_122147276564007629_6939718363985325810_n.jpg" alt="G&A Tours logo">
+        <img
+          src="/logo/398759390_122147276564007629_6939718363985325810_n.jpg"
+          alt="G&A Tours logo"
+        />
       </div>
+
       <div class="logo-text">
         <strong>G&A Tours</strong>
         <span>{{ 'nav.TourismAgency' | translate }}</span>
       </div>
     </div>
 
-    <button class="hamburger" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu" [attr.aria-expanded]="menuOpen" [attr.aria-controls]="'main-nav'">
+    <!-- Mobile Hamburger -->
+    <button
+      type="button"
+      class="hamburger"
+      [class.open]="menuOpen"
+      (click)="toggleMenu()"
+      aria-label="Toggle navigation menu"
+      [attr.aria-expanded]="menuOpen"
+      aria-controls="main-nav"
+    >
       <span></span>
       <span></span>
       <span></span>
     </button>
 
-    <ul id="main-nav" class="nav-links" [class.open]="menuOpen">
-      <li routerLinkActive="active">
-        <a routerLink="/finished-tours" (click)="closeMenu()">{{ 'nav.tours' | translate }}</a>
+    <!-- Navigation Links -->
+    <ul
+      id="main-nav"
+      class="nav-links"
+      [class.open]="menuOpen"
+    >
+
+      <!-- Tours -->
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a
+          routerLink="/tours"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+        >
+          {{ 'nav.tours' | translate }}
+        </a>
       </li>
-      <li routerLinkActive="active">
-        <a routerLink="/gallery" (click)="closeMenu()">{{ 'nav.gallery' | translate }}</a>
+
+      <!-- Gallery -->
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a
+          routerLink="/gallery"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+        >
+          {{ 'nav.gallery' | translate }}
+        </a>
       </li>
-      <li><a href="#" (click)="closeMenu(); $event.preventDefault()">{{ 'nav.about' | translate }}</a></li>
-      <li><a href="#contact" (click)="goToContact($event)">{{ 'nav.contact' | translate }}</a></li>
-      <li><a class="login-btn" href="#" (click)="openLogInModal($event)"><i class="fa-regular fa-user"></i> {{ 'nav.Log In' | translate }}</a></li>
+
+      <!-- About -->
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a
+          routerLink="/about"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          (click)="closeMenu()"
+        >
+          {{ 'nav.about' | translate }}
+        </a>
+      </li>
+
+      <!-- Contact -->
+      <li>
+        <a
+          href="#contact"
+          (click)="goToContact($event); closeMenu()"
+        >
+          {{ 'nav.contact' | translate }}
+        </a>
+      </li>
+
+      <!-- Logged-in User -->
+      @if (isUserLoggedIn()) {
+
+        <!-- Admin -->
+        @if (isAdmin()) {
+          <li routerLinkActive="active">
+            <a
+              routerLink="/admin"
+              routerLinkActive="active"
+              (click)="closeMenu()"
+              class="user-btn"
+            >
+              <i class="fa-regular fa-user"></i>
+              {{ loggedInUserName() }}
+            </a>
+          </li>
+        }
+
+        <!-- Regular User -->
+        @else {
+          <li>
+            <span class="user-btn">
+              <i class="fa-regular fa-user"></i>
+              {{ loggedInUserName() }}
+            </span>
+          </li>
+        }
+
+      }
+
+      <!-- Logged-out User -->
+      @else {
+        <li>
+          <a
+            class="login-btn"
+            href="#"
+            (click)="openLogInModal($event); closeMenu()"
+          >
+            <i class="fa-regular fa-user"></i>
+            {{ 'nav.Log In' | translate }}
+          </a>
+        </li>
+      }
+
     </ul>
   </div>
 </nav>
 
+<!-- Login Modal -->
 @if (isLogInModalOpen()) {
   <app-log-in-modal></app-log-in-modal>
+}
+
+<!-- Verify Email Modal -->
+@if (isVerifyModalOpen()) {
+  <app-verify-email-modal></app-verify-email-modal>
 }

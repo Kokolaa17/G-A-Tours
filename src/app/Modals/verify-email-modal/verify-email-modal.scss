@@ -1,0 +1,197 @@
+/* Design tokens pulled from the existing Log In modal */
+:host {
+  --vem-green-dark: #1f4032;
+  --vem-green: #2f5b48;
+  --vem-yellow: #f0d98c;
+  --vem-yellow-hover: #ecd074;
+  --vem-border: #d9dcd8;
+  --vem-text-muted: #6b7570;
+  --vem-error: #c0392b;
+  --vem-radius: 16px;
+  --vem-radius-sm: 10px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.vem-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 30, 25, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 16px;
+}
+
+.vem-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: var(--vem-radius);
+  width: 100%;
+  max-width: 460px;
+  padding: 40px 44px 36px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  text-align: center;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.vem-close {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: #444;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+}
+
+.vem-close:hover {
+  color: #000;
+}
+
+.vem-title {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--vem-green-dark);
+}
+
+.vem-subtitle {
+  margin: 0 0 28px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vem-text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.vem-email {
+  color: var(--vem-green-dark);
+}
+
+.vem-field-label {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--vem-green-dark);
+  margin-bottom: 8px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.vem-digits {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.vem-digit {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 56px;
+  border: 1px solid var(--vem-border);
+  border-radius: var(--vem-radius-sm);
+  text-align: center;
+  font-size: 22px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #222;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+.vem-digit:focus {
+  border-color: var(--vem-green);
+  box-shadow: 0 0 0 3px rgba(47, 91, 72, 0.15);
+}
+
+.vem-digit-filled {
+  border-color: var(--vem-green);
+}
+
+.vem-digit-error {
+  border-color: var(--vem-error);
+}
+
+.vem-error {
+  color: var(--vem-error);
+  font-size: 13px;
+  text-align: left;
+  margin: 6px 0 4px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.vem-submit {
+  width: 100%;
+  margin-top: 22px;
+  padding: 14px 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--vem-yellow);
+  color: #2a2a2a;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.vem-submit:hover:not(:disabled) {
+  background: var(--vem-yellow-hover);
+}
+
+.vem-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.vem-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.25);
+  border-top-color: #2a2a2a;
+  border-radius: 50%;
+  animation: vem-spin 0.7s linear infinite;
+}
+
+@keyframes vem-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vem-resend {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--vem-text-muted);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.vem-resend-link {
+  background: none;
+  border: none;
+  color: var(--vem-green-dark);
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 4px;
+  padding: 0;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.vem-resend-link:hover {
+  text-decoration: underline;
+}
+
+.vem-resend-cooldown {
+  margin-left: 4px;
+  color: var(--vem-text-muted);
+}
