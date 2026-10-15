@@ -26,7 +26,7 @@
       <p class="tile__meta">{{ stats.bookings }} records</p>
     </a>
 
-     <a class="tile" routerLink="/admin/gallery">
+     <a class="tile" (click)="navigateToGalleryManager()">
       <span class="tile__icon" aria-hidden="true">🖼️</span>
       <h2 class="tile__title">Manage Gallery</h2>
       <p class="tile__meta">{{ stats.gallery }} records</p>

@@ -50,19 +50,23 @@ export class AdminPanel {
   }
 
   logOut() {
-  this._authService.logout();
-  this._router.navigate(['/']).then(() => {
-    try {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    } catch {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-  });
-}
+    this._authService.logout();
+    this._router.navigate(['/']).then(() => {
+      try {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      } catch {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+  
+  navigateToGalleryManager() {
+    this._router.navigate(['/admin/gallery-manager'])
+  }
 }

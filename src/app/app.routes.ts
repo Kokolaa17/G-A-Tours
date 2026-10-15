@@ -25,5 +25,9 @@ export const routes: Routes = [
     {
         path : 'admin',
         loadComponent: () => import('./Components/admin-panel/admin-panel').then(m => m.AdminPanel)
-    }
+    },
+    {
+        path : 'admin/gallery-manager',
+        loadComponent: () => import('./Components/admin-panel/admin-panel-gallery-manager/admin-panel-gallery-manager').then(m => m.AdminPanelGalleryManager)
+    },
 ];

@@ -63,6 +63,41 @@ section#gallery {
       display: flex;
       flex-direction: column;
 
+      .admin-actions {
+        display: flex;
+        gap: 8px;
+      
+        .icon-btn {
+          width: 34px;
+          height: 34px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background: #fff;
+          color: #555;
+          border: 1px solid #ece9e2;
+          border-radius: 7px;
+          cursor: pointer;
+          transition: border-color 0.2s, color 0.2s, background 0.2s;
+      
+          &:hover {
+            border-color: #006139;
+            color: #006139;
+          }
+      
+          &.danger:hover {
+            border-color: #c0392b;
+            color: #c0392b;
+            background: #fbeceb;
+          }
+      
+          &:focus-visible {
+            outline: 2px solid #006139;
+            outline-offset: 2px;
+          }
+        }
+      }
+
       &:hover {
         transform: translateY(-5px);
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
@@ -205,6 +240,162 @@ section#gallery {
     justify-content: center;
     padding: 20px;
     animation: fadeIn 0.2s ease;
+
+    .dialog {
+      position: relative;
+      width: min(480px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 26px;
+      background: #fff;
+      border-radius: 14px;
+    
+      h3 {
+        font-family: "Playfair Display", serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--dark);
+        margin: 0;
+      }
+    
+      .dialog-text {
+        font-size: 14px;
+        line-height: 1.65;
+        color: var(--gray);
+        margin: 0;
+      }
+    
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        input[type="file"] {
+          padding: 8px;
+          font-size: 13px;
+          cursor: pointer;
+        }
+    
+        label {
+          font-size: 12px;
+          font-weight: 600;
+          color: #555;
+          letter-spacing: 0.4px;
+    
+          em {
+            color: #c0392b;
+            font-style: normal;
+          }
+        }
+    
+        input,
+        textarea {
+          width: 100%;
+          padding: 11px 14px;
+          font: inherit;
+          font-size: 14px;
+          color: var(--dark);
+          background: #fff;
+          border: 1px solid #ece9e2;
+          border-radius: 8px;
+          outline: none;
+          transition: border-color 0.2s, box-shadow 0.2s;
+    
+          &:focus {
+            border-color: #006139;
+            box-shadow: 0 0 0 3px rgba(0, 97, 57, 0.12);
+          }
+    
+          &.ng-touched.ng-invalid {
+            border-color: #c0392b;
+          }
+        }
+    
+        textarea {
+          resize: vertical;
+          min-height: 96px;
+          line-height: 1.6;
+        }
+    
+        .error {
+          font-size: 12px;
+          color: #c0392b;
+        }
+      }
+    
+      .status {
+        font-size: 13px;
+        padding: 10px 14px;
+        border-radius: 8px;
+        margin: 0;
+    
+        &.error {
+          background: #fbeceb;
+          color: #c0392b;
+        }
+      }
+    
+      .dialog-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        padding-top: 14px;
+        border-top: 1px solid #f0ede6;
+    
+        .btn-sm,
+        .btn-ghost {
+          padding: 10px 20px;
+          border-radius: 7px;
+          font-size: 12px;
+          font-weight: 600;
+          letter-spacing: 0.4px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: background 0.2s, border-color 0.2s, color 0.2s;
+    
+          &:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+          }
+        }
+    
+        .btn-sm {
+          background: #006139;
+          color: #fff;
+          border: none;
+    
+          // the base .btn-sm adds a "→" arrow; not wanted in dialogs
+          &::after {
+            content: none;
+          }
+    
+          &:hover:not(:disabled) {
+            background: #00794a;
+          }
+    
+          &.danger {
+            background: #c0392b;
+    
+            &:hover:not(:disabled) {
+              background: #a93226;
+            }
+          }
+        }
+    
+        .btn-ghost {
+          background: #fff;
+          color: var(--dark);
+          border: 1px solid #ece9e2;
+    
+          &:hover:not(:disabled) {
+            border-color: #006139;
+            color: #006139;
+          }
+        }
+      }
+    }
 
     .lightbox-close {
       position: fixed;

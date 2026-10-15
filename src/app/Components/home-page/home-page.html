@@ -3,5 +3,7 @@
     <app-why-us></app-why-us>
     <app-our-tours></app-our-tours>
     <app-contact-component></app-contact-component>
-    <app-gallery-component></app-gallery-component>
+    @if (hasGallery()) {
+        <app-gallery-component></app-gallery-component>
+    }
 </section>
